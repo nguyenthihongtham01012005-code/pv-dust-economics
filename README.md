@@ -54,6 +54,19 @@ Trang có bảng kiểm tra tự động: đủ 21 nhóm; có chuỗi công su�
 - **Chưa xác định:** tốc độ tích bụi g/m²/ngày, số ngày để đạt ngưỡng, mất điện năng đo trên hệ MPPT, thời gian vệ sinh tối ưu.
 - Độ lệch chuẩn của 40 lần đọc liên tiếp **không** phải độ không chắc chắn của 40 thí nghiệm độc lập. Nếu muốn ước lượng sai số giữa lần lặp, cần các lần thí nghiệm độc lập hơn.
 
+### Cơ sở lựa chọn tải điện trở 3,2 Ω gần MPP danh định
+
+Thực nghiệm dùng **hai điện trở 1,6 Ω mắc nối tiếp** nên tải danh định **R = 3,2 Ω**. Với thông số nhãn tấm pin 100 Wp: **Vmp = 18 V, Imp = 5,55 A**, điện trở tương đương tại điểm công suất cực đại **ở điều kiện danh định** là
+
+```text
+R_MPP,STC = Vmp / Imp = 18 / 5.55 ≈ 3.243 Ω
+ΔR / R_MPP,STC ≈ 1.33 %
+```
+
+Đây là **cơ sở lựa chọn tải phù hợp**, không phải điện trở bất kỳ. Tuy nhiên **1,33% là sai khác điện trở, không phải sai số công suất**. MPP thực tế và R_MPP = Vmp/Imp thay đổi theo bức xạ, nhiệt độ và tình trạng bụi. Do đó việc gần R_MPP ở STC **không chứng minh** luôn đo đúng Pmp tại G = 300, 670, 900 W/m². Để kiểm định, cần dữ liệu Pmp từ PV200 và P_tải = U×I tại **cùng G, cùng mức bụi và điều kiện nhiệt độ gần tương đồng**; có thể tính `|P_tải - Pmp| / Pmp × 100%`. Khi không có cặp phép đo đối chiếu, giữ tên **công suất tải 3,2 Ω (gần MPP danh định)** và coi phần quy đổi kinh tế là **kịch bản**.
+
+Cơ sở lý thuyết: [PVsyst — How I–V curves vary with irradiance and temperature](https://www.pvsyst.com/help-basic/en/technical-tools/photovoltaic-generation/photovoltaic-cells/how-i-v-curves-change-with-irradiance-and-temperature.html); [Module measurement with load](https://sinovoltaics.com/learning-center/basics/module-measurement-with-load/).
+
 ## 4. Kiểm soát nền sản lượng sạch và độ biến động thí nghiệm (bản bổ sung)
 
 - Website có mục **Kiểm tra nền sản lượng và điều kiện quy đổi** với ba lựa chọn: *chưa xác minh nguồn sạch* (mặc định), *người dùng khai báo đã có căn cứ riêng xem nguồn là sạch*, và *nguồn đã gồm tổn thất bụi*. Trường hợp cuối **khóa ngưỡng hòa vốn và báo giá tối đa**, vì không được cộng trùng suy hao bụi. Trường hợp chưa xác minh vẫn hiển thị kết quả để khảo sát **kịch bản toán học**, nhưng không xác nhận lợi ích phục hồi thực tế.
