@@ -54,7 +54,16 @@ Trang có bảng kiểm tra tự động: đủ 21 nhóm; có chuỗi công su�
 - **Chưa xác định:** tốc độ tích bụi g/m²/ngày, số ngày để đạt ngưỡng, mất điện năng đo trên hệ MPPT, thời gian vệ sinh tối ưu.
 - Độ lệch chuẩn của 40 lần đọc liên tiếp **không** phải độ không chắc chắn của 40 thí nghiệm độc lập. Nếu muốn ước lượng sai số giữa lần lặp, cần các lần thí nghiệm độc lập hơn.
 
-## 4. Tài liệu đối chiếu
+## 4. Kiểm soát nền sản lượng sạch và độ biến động thí nghiệm (bản bổ sung)
+
+- Website có mục **Kiểm tra nền sản lượng và điều kiện quy đổi** với ba lựa chọn: *chưa xác minh nguồn sạch* (mặc định), *người dùng khai báo đã có căn cứ riêng xem nguồn là sạch*, và *nguồn đã gồm tổn thất bụi*. Trường hợp cuối **khóa ngưỡng hòa vốn và báo giá tối đa**, vì không được cộng trùng suy hao bụi. Trường hợp chưa xác minh vẫn hiển thị kết quả để khảo sát **kịch bản toán học**, nhưng không xác nhận lợi ích phục hồi thực tế.
+- PVGIS/JRC xác nhận đầu ra hệ thống đã có tổn thất tổng hợp và 14% là giá trị mặc định, **có thể gồm bụi**. Không được mặc nhiên khấu trừ toàn bộ 14% hay lấy toàn bộ 14% là soiling loss. Phải đối chiếu cấu hình sản lượng sạch của từng tệp: [PVGIS user manual](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-user-manual_en).
+- Đồ thị **Trung bình ± 1 SD** tại G = 300 / 670 / 900 W/m² vẽ trên đúng 7 mức bụi với P = U×I và SD tương ứng. Đây là **dao động mô tả trong chuỗi 40 lượt đọc liên tiếp**, không phải 95% CI hoặc 40 phép lặp độc lập.
+- Ngưỡng hòa vốn L* là **điều kiện kinh tế cho kỳ H** được chọn, với giả định suy hao và tỷ lệ khôi phục không đổi trong kỳ. Phân tích H = 7 / 15 / 30 / 60 / 90 ngày chỉ là thử độ nhạy, **không** dự báo bụi tích tụ theo ngày hay chu kỳ vệ sinh.
+- Khi chuyển giữa nguồn sản lượng giờ/tháng hoặc nạp tệp mới, trạng thái kiểm chứng nền sạch tự quay về *chưa xác minh*. Trạng thái đầu vào được lưu cùng dự án JSON/CSV báo cáo. Dù nền sạch được người dùng xác nhận, dữ liệu U×I tải cố định **chưa chứng minh** suy hao Pmp hay sản lượng AC MPPT.
+- Căn cứ soiling: [IEC 61724-1:2021 (IEC)](https://webstore.iec.ch/en/publication/65561), [Monitoring photovoltaic soiling: assessment, challenges and perspectives](https://pmc.ncbi.nlm.nih.gov/articles/PMC7960939/).
+
+## 5. Tài liệu đối chiếu
 
 1. **IEC 61724-1:2021 — Photovoltaic system performance, monitoring** (khái niệm soiling ratio/soiling level). [Bản thông tin tiêu chuẩn](https://ecommerce.sist.si/catalog/standards/sist/c167b9d7-14bf-4ff0-b716-ef6f4aebd61a/sist-en-iec-61724-1-2021). Viện dẫn khái niệm, **không tuyên bố thí nghiệm tải cố định là phép đo đạt IEC**.
 2. **Monitoring photovoltaic soiling: assessment, challenges, and perspectives** (2021). [Bài nghiên cứu open access](https://pmc.ncbi.nlm.nih.gov/articles/PMC7960939/).
@@ -62,7 +71,7 @@ Trang có bảng kiểm tra tự động: đủ 21 nhóm; có chuỗi công su�
 4. **JRC — PVGIS 5 user manual** ([tổn thất hệ thống PV](https://joint-research-centre.ec.europa.eu/photovoltaic-geographical-information-system-pvgis/using-pvgis-5/pvgis-5-user-manual_en)).
 5. **Economics of seasonal photovoltaic soiling and cleaning optimization scenarios**, *Energy* 215 (2021), 119018. [DOI](https://doi.org/10.1016/j.energy.2020.119018). Nghiên cứu lịch vệ sinh cần thông tin biến thiên bám bụi theo thời gian; web hiện không cung cấp phần này.
 
-## 5. Cách xem và tải
+## 6. Cách xem và tải
 
 Website có biểu đồ suy hao theo G, bảng hòa vốn VNĐ/kWp, phân tích kịch bản trước/sau vệ sinh, độ nhạy giá điện/chi phí/η, bảng kiểm tra dữ liệu, tải/nhập CSV/JSON, và chức năng in/lưu PDF.
 
